@@ -1,36 +1,27 @@
-// int main()
-// {
-//     const Animal* meta = new Animal();
-//     const Animal* j = new Dog();
-//     const Animal* i = new Cat();
-//     std::cout << j->getType() << " " << std::endl;
-//     std::cout << i->getType() << " " << std::endl;
-//     i->makeSound(); //will output the cat sound!
-//     j->makeSound();
-//     meta->makeSound();
+#include "Animal.hpp"
+#include "Dog.hpp"
+#include "Cat.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
-//     return 0;
-// }
+int main()
+{
+    const Animal* meta = new Animal();
+    const Animal* j = new Dog();
+    const Animal* i = new Cat();
+    std::cout << j->getType() << " " << std::endl;
+    std::cout << i->getType() << " " << std::endl;
+    i->makeSound();
+    j->makeSound();
+    meta->makeSound();
 
-#include <iostream>
+    WrongAnimal* met = new WrongAnimal();
+	WrongCat* a = new WrongCat();
+	std::cout << a->getType() << " " << std::endl;
+	a->makeSound();
+	met->makeSound();
+	delete a; delete met; delete meta; delete j; delete i;
 
-class Base {
-public:
-    virtual void greet() const {
-        std::cout << "Hello from Base!" << std::endl;
-    }
-};
-
-class Derived : public Base {
-public:
-    void greet() const override { // override is optional but good practice
-        std::cout << "Hello from Derived!" << std::endl;
-    }
-};
-
-int main() {
-    Base* obj = new Derived();
-    obj->greet(); // Output: Hello from Derived!
-    delete obj;
     return 0;
 }
+
