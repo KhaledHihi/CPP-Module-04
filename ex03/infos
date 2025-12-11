@@ -1,0 +1,8 @@
+A Materia System (like magic/spells in a game):
+
+AMateria (Abstract) - Base class for all materias
+Ice & Cure (Concrete) - Two types of materias
+ICharacter (Interface) - What a character must do
+Character (Concrete) - A character that can equip materias
+IMateriaSource (Interface) - Template for creating materias
+MateriaSource (Concrete) - Learns and creates materias
