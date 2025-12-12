@@ -53,3 +53,36 @@ ALL functions pure virtual	  At least one function pure virtual
 No data members (usually)	  Can have data members
 No implementation	          Can have some implementations
 = 0 on all functions	      Mix of = 0 and normal functions
+
+
+┌─────────────────────────────────────────────┐
+│           THE COMPLETE SYSTEM               │
+└─────────────────────────────────────────────┘
+
+┌──────────────┐         ┌──────────────┐
+│ MateriaSource│         │  Character   │
+│              │         │              │
+│ Templates[4] │         │ Inventory[4] │
+│  [Ice]       │         │  [Ice]       │
+│  [Cure]      │         │  [Cure]      │
+│  [ ]         │         │  [Ice]       │
+│  [ ]         │         │  [ ]         │
+└──────────────┘         └──────────────┘
+       │                        │
+       │ createMateria()        │ use()
+       ▼                        ▼
+┌──────────────┐         ┌──────────────┐
+│   AMateria   │         │  ICharacter  │
+│   (Abstract) │         │  (Interface) │
+└──────────────┘         └──────────────┘
+       │                        │
+  ┌────┴────┐                   │
+  │         │                   │
+┌─▼──┐   ┌─▼───┐               │
+│Ice │   │Cure │               │
+└────┘   └─────┘               │
+                                │
+                         ┌──────▼──────┐
+                         │  Character  │
+                         │ (Concrete)  │
+                         └─────────────┘
