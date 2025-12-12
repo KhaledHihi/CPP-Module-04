@@ -6,3 +6,50 @@ ICharacter (Interface) - What a character must do
 Character (Concrete) - A character that can equip materias
 IMateriaSource (Interface) - Template for creating materias
 MateriaSource (Concrete) - Learns and creates materias
+
+
+
+┌─────────────────┐
+│   AMateria      │ (Abstract)
+│   - type        │
+│   + clone()=0   │
+│   + use()       │
+└────────┬────────┘
+         │
+    ┌────┴────┐
+    │         │
+┌───▼──┐  ┌──▼───┐
+│ Ice  │  │ Cure │ (Concrete)
+└──────┘  └──────┘
+
+┌──────────────────┐
+│  ICharacter      │ (Interface)
+│  + getName()=0   │
+│  + equip()=0     │
+│  + unequip()=0   │
+│  + use()=0       │
+└────────┬─────────┘
+         │
+    ┌────▼────────┐
+    │  Character  │ (Concrete)
+    │  - name     │
+    │  - inv[4]   │
+    └─────────────┘
+
+┌─────────────────────┐
+│  IMateriaSource     │ (Interface)
+│  + learnMateria()=0 │
+│  + createMateria()=0│
+└──────────┬──────────┘
+           │
+    ┌──────▼──────────┐
+    │ MateriaSource   │ (Concrete)
+    │ - templates[4]  │
+    └─────────────────┘
+
+
+    Interface	                 Abstract Class
+ALL functions pure virtual	  At least one function pure virtual
+No data members (usually)	  Can have data members
+No implementation	          Can have some implementations
+= 0 on all functions	      Mix of = 0 and normal functions
