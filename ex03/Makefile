@@ -13,8 +13,12 @@ $(pro): $(obj)
 %.o: %.cpp
 	$(com) $(flages) -c $< -o $@
 
+re: fclean all
+
 clean:
 	rm -rf $(obj)
 
 fclean: clean
 	rm -rf $(pro)
+
+.SECONDARY : $(obj)
