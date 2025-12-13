@@ -1,67 +1,66 @@
 #include "MateriaSource.hpp"
 
-MateriaSource::MateriaSource() {
-    for (int i = 0; i < 4; i++) {
-        this->templates[i] = NULL;
-    }
+MateriaSource::MateriaSource(){
+	for (size_t i = 0; i < 4; i++)
+		tabl[i] = NULL;
 }
 
-MateriaSource::MateriaSource(const MateriaSource& other) {
-    for (int i = 0; i < 4; i++) {
-        if (other.templates[i]) {
-            this->templates[i] = other.templates[i]->clone();
-        } else {
-            this->templates[i] = NULL;
-        }
-    }
+MateriaSource::MateriaSource(const MateriaSource& other){
+	if (this != &other)
+	{
+		for (size_t i = 0; i < 4; i++)
+		{
+			if (other.tabl[i])
+				this->tabl[i] = other.tabl[i]->clone();
+			else
+				this->tabl[i] = NULL;
+		}
+	}
 }
 
-MateriaSource& MateriaSource::operator=(const MateriaSource& other) {
-    if (this != &other) {
-        for (int i = 0; i < 4; i++) {
-            if (this->templates[i]) {
-                delete this->templates[i];
-                this->templates[i] = NULL;
-            }
-        }
-        
-        for (int i = 0; i < 4; i++) {
-            if (other.templates[i]) {
-                this->templates[i] = other.templates[i]->clone();
-            } else {
-                this->templates[i] = NULL;
-            }
-        }
-    }
-    return *this;
+MateriaSource& MateriaSource::operator=(const MateriaSource& other){
+	if (this != &other)
+	{
+		for (size_t i = 0; i < 4; i++)
+		{
+			if (other.tabl[i])
+			{
+				if (this->tabl[i])
+					delete this->tabl[i];
+				this->tabl[i] = other.tabl[i]->clone();
+			}
+			else
+				this->tabl[i] = NULL;
+		}
+	}
+	return *this;
 }
 
-MateriaSource::~MateriaSource() {
-    for (int i = 0; i < 4; i++) {
-        if (this->templates[i]) {
-            delete this->templates[i];
-        }
-    }
+MateriaSource::~MateriaSource(){
+	for (size_t i = 0; i < 4; i++)
+	{
+		if (tabl[i])
+			delete tabl[i];
+	}
 }
 
-void MateriaSource::learnMateria(AMateria* m) {
-    if (!m) {
-        return;
-    }
-    
-    for (int i = 0; i < 4; i++) {
-        if (this->templates[i] == NULL) {
-            this->templates[i] = m->clone();
-            return;
-        }
-    }
+void MateriaSource::learnMateria(AMateria* m){
+	for (size_t i = 0; i < 4; i++)
+	{
+		if (!tabl[i])
+		{
+			tabl[i] = m->clone();
+			delete m;
+			return ;
+		}
+	}
 }
 
-AMateria* MateriaSource:: createMateria(std::string const & type) {
-    for (int i = 0; i < 4; i++) {
-        if (this->templates[i] && this->templates[i]->getType() == type) {
-            return this->templates[i]->clone();
-        }
-    }
-    return NULL;
+AMateria* MateriaSource::createMateria(std::string const & type){
+	for (size_t i = 0; i < 4; i++)
+	{
+		if (tabl[i] && tabl[i]->getType() == type)
+			return tabl[i]->clone();
+	}
+	return NULL;
 }

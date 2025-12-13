@@ -1,21 +1,18 @@
-#ifndef MATERIASOURCE_HPP
-#define MATERIASOURCE_HPP
+#pragma once
 
-#include "IMateriaSource.hpp"
 #include "AMateria.hpp"
+#include "IMateriaSource.hpp"
 
-class MateriaSource : public IMateriaSource {
-private:
-    AMateria* templates[4];
+class MateriaSource: public IMateriaSource
+{
+	private:
+		AMateria* tabl[4];
+	public:
+		MateriaSource();
+		MateriaSource(const MateriaSource& other);
+		MateriaSource& operator=(const MateriaSource& other);
+		~MateriaSource();
 
-public:
-    MateriaSource();
-    MateriaSource(const MateriaSource& other);
-    MateriaSource& operator=(const MateriaSource& other);
-    ~MateriaSource();
-
-    void learnMateria(AMateria* m);
-    AMateria* createMateria(std::string const & type);
+		void learnMateria(AMateria*);
+		AMateria* createMateria(std::string const & type);
 };
-
-#endif

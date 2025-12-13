@@ -1,29 +1,27 @@
 #include "AMateria.hpp"
-#include "ICharacter.hpp"
 
-AMateria::AMateria() :  type("unknown") {
+AMateria::AMateria(){}
+
+AMateria::AMateria(const AMateria& other){
+	type = other.type;
 }
 
-AMateria::AMateria(std::string const & type) : type(type) {
+AMateria&	AMateria::operator=(const AMateria& other){
+	type = other.type;
+	return *this;
 }
 
-AMateria::AMateria(const AMateria& other) : type(other.type) {
+AMateria::~AMateria(){}
+
+AMateria::AMateria(std::string const & type){
+	this->type = type;
 }
 
-AMateria& AMateria::operator=(const AMateria& other) {
-     //(as per subject)
-    (void)other;
-    return *this;
+void AMateria::use(ICharacter& target){
+	std::cout << "Default attack (no type) on " << target.getName() << std::endl;
 }
 
-AMateria::~AMateria() {
+std::string const & AMateria::getType() const{
+	return type;
 }
 
-std::string const & AMateria::getType() const {
-    return this->type;
-}
-
-void AMateria::use(ICharacter& target) {
-    // Default implementation (will be overridden)
-    (void)target;
-}
